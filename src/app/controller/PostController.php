@@ -16,18 +16,8 @@ class PostController
     public function index()
     {
         $title = 'All Posts';
-
-        // All posts
-        // $posts = $this->post->all();
-
-        // All posts by pagination
-        $start = $_GET['start'] ?? 0;
-        $count = 5;
-        $posts = $this->post->paginate($start, $count);
-        $total = $this->post->count();
-
-        // return view('post/index', compact('title', 'posts'));
-        return view('post/index', compact('title', 'posts', 'start', 'total', 'count'));
+        $posts = $this->post->all();
+        return view('post/index', compact('title', 'posts'));
     }
 
     public function show($id)
@@ -76,9 +66,10 @@ class PostController
     {
         $title = $_POST['title'] ?? '';
         $content = $_POST['content'] ?? '';
+        $id = $post = $this->post->find($id);
 
         if ($title && $content) {
-            $result = $this->post->update($title, $content);
+            $result = $this->post->update($title, $content, $id);
 
             if ($result) {
                 session_set('success', 'Post updated.');
@@ -103,15 +94,4 @@ class PostController
         return redirect('post');
     }
 
-    public function generate()
-    {
-        $faker = \Faker\Factory::create();
-
-        for ($i = 0; $i < 32; $i++) {
-            $this->post->create($faker->text(10), $faker->text(500));
-        }
-
-        session_set('success', 'Post created.');
-        return redirect('post');
-    }
 }

@@ -12,13 +12,13 @@
         <div class="col-md-12 mb-3">
             <div class="card">
                 <div class="card-header">
-                    <?php echo $post['title']; ?>
+                    <?= $post['title']; ?>
                 </div>
                 <div class="card-body">
-                    <?php echo $post['content']; ?>
+                    <?= $post['content']; ?>
                 </div>
                 <div class="card-footer">
-                    Posted on <?php echo date('d-M-Y', strtotime($post['date'])); ?>
+                    Posted on <?= date('d-M-Y', strtotime($post['date'])); ?>
                 </div>
             </div>
         </div>

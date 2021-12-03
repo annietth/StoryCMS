@@ -38,15 +38,19 @@ class Post extends Model
         return mysqli_fetch_assoc($result);
     }
 
-    public function update($title, $content)
+    public function update($title, $content, $id)
     {
-        $sql = "UPDATE posts SET title='$title', content='$content'";
+        var_dump($title);
+        var_dump($content);
+        var_dump($id);
+        //$sql = "UPDATE posts SET title='$title', content='$content', where id= '$id' ";
+        $sql = "UPDATE `posts` SET `title`='$title',`content`='$content' WHERE `id` = '$id'";
         return mysqli_query($this->conn, $sql);
     }
 
     public function delete($id)
     {
-        $sql = "DELETE posts WHERE id=$id";
+        $sql = "DELETE FROM `posts` WHERE `id` = $id";
         return mysqli_query($this->conn, $sql);
     }
 }
