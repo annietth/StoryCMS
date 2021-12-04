@@ -23,8 +23,7 @@ class PostController
     public function show($id)
     {
         $post = $this->post->find($id);
-
-        $title = $post['title'];
+        $title = $post[0]["title"];
 
         return view('post/show', compact('title', 'post'));
     }
@@ -40,17 +39,16 @@ class PostController
     {
         $title = $_POST['title'] ?? '';
         $content = $_POST['content'] ?? '';
+        $auteur = $_SESSION['name'];
 
         if ($title && $content) {
-            $result = $this->post->create($title, $content);
+            $result = $this->post->create($title, $content,$auteur);
 
             if ($result) {
                 session_set('success', 'Post created.');
                 return redirect('post');
             }
         }
-
-        session_set('fail', 'The title and content field is required.');
         return redirect('post/create');
     }
 
@@ -62,22 +60,21 @@ class PostController
         return view('post/edit', compact('title', 'post'));
     }
 
-    public function update()
+    public function update($id)
     {
         $title = $_POST['title'] ?? '';
         $content = $_POST['content'] ?? '';
-        $id = $post = $this->post->find($id);
+        $idss = $this->post->find($id);
+        $ids = $idss[0]["id"];
 
         if ($title && $content) {
-            $result = $this->post->update($title, $content, $id);
+            $result = $this->post->update($title, $content, $ids);
 
             if ($result) {
                 session_set('success', 'Post updated.');
                 return redirect('post');
             }
         }
-
-        session_set('fail', 'The title and content field is required.');
         return redirect('post/edit');
     }
 
@@ -89,8 +86,6 @@ class PostController
             session_set('success', 'Post deleted.');
             return redirect('post');
         }
-
-        session_set('fail', 'The title and content field is required.');
         return redirect('post');
     }
 

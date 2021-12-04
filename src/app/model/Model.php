@@ -3,7 +3,7 @@ namespace App\model;
 
 class Model
 {
-    protected $conn;
+    protected $bdd;
     
     public function __construct()
     {
@@ -12,8 +12,13 @@ class Model
 
     public function connect()
     {
-        if(!$this->conn) {
-            $this->conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        try {
+            $this->bdd = new \PDO('mysql:host=localhost;dbname=mvc2;charset=utf8', 'root', '', array(
+                \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8',
+                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_WARNING
+            ));
+        } catch (\PDOExeption $e) {
+            echo "DB pas co";
         }
     }
 }

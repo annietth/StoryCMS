@@ -7,17 +7,35 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/StoryCMS/src/public/">Home</a>
+                    <a class="nav-link" href=<?= APP_URL ?>>Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/StoryCMS/src/public/post">Post</a>
+                    <a class="nav-link" href=<?= APP_URL . 'post' ?>>Post</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/StoryCMS/src/public/about">About</a>
+                    <a class="nav-link" href=<?= APP_URL . 'about' ?>>About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/StoryCMS/src/public/contact">Contact</a>
+                    <a class="nav-link" href=<?= APP_URL . 'contact' ?>>Contact</a>
                 </li>
+
+                <?php if (isset($_SESSION["role"]) && $_SESSION["role"] == 1) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href=<?= APP_URL . 'users' ?>>users</a>
+                    </li>
+                <?php endif ?>
+                <?php if (!isset($_SESSION["role"])) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href=<?= APP_URL . 'users/create' ?>>inscription</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=<?= APP_URL . 'users/login' ?>>connexion</a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href=<?= APP_URL . 'users/logout' ?>>deconexion</a>
+                    </li>
+                <?php endif ?>
             </ul>
         </div>
     </div>

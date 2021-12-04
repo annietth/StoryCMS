@@ -7,8 +7,14 @@
     },
     "authors": [
         {
-            "name": "Renaudfradin",
+            "name": "Renaud fradin",
             "email": "renaudfradin@gmail.com"
+        },
+        {
+            "name": "Jacky Truong"
+        },
+        {
+            "name": "Annie Tran"
         }
     ],
     "require": {}

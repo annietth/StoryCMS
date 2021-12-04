@@ -2,55 +2,31 @@
 
 namespace App\model;
 
-class Post extends Model
-{
-    public function all()
-    {
-        $sql = 'SELECT * FROM posts';
-        $result = mysqli_query($this->conn, $sql);
-        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+class Post extends Model {
+    public function all() {
+        $sql = $this->bdd->prepare("SELECT * FROM posts");
+        $sql->execute();
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function paginate($start = 0, $count = 10)
-    {
-        $sql = "SELECT * FROM posts limit $start, $count";
-        $result = mysqli_query($this->conn, $sql);
-        return  mysqli_fetch_all($result, MYSQLI_ASSOC);
+    public function create($title, $content, $auteur){
+        $sql = $this->bdd->prepare("INSERT INTO posts (title, content, auteur) VALUES (?, ?, ?)");
+        return $sql->execute(array($title, $content, $auteur));
     }
 
-    public function count()
-    {
-        $sql = 'SELECT * FROM posts';
-        $result = mysqli_query($this->conn, $sql);
-        return mysqli_num_rows($result);
+    public function find($id){
+        $sql = $this->bdd->prepare("SELECT * FROM posts WHERE id = '$id'");
+        $sql->execute();
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function create($title, $content)
-    {
-        $sql = "INSERT INTO posts (title, content) VALUES ('$title', '$content')";
-        return mysqli_query($this->conn, $sql);
+    public function update($title, $content, $ids){
+        $sql = $this->bdd->prepare("UPDATE `posts` SET `title`='$title',`content`='$content' WHERE `id` = '$ids'");
+        return $sql->execute(array($title, $content, $ids));
     }
 
-    public function find($id)
-    {
-        $sql = "SELECT * FROM posts where id = '$id'";
-        $result = mysqli_query($this->conn, $sql);
-        return mysqli_fetch_assoc($result);
-    }
-
-    public function update($title, $content, $id)
-    {
-        var_dump($title);
-        var_dump($content);
-        var_dump($id);
-        //$sql = "UPDATE posts SET title='$title', content='$content', where id= '$id' ";
-        $sql = "UPDATE `posts` SET `title`='$title',`content`='$content' WHERE `id` = '$id'";
-        return mysqli_query($this->conn, $sql);
-    }
-
-    public function delete($id)
-    {
-        $sql = "DELETE FROM `posts` WHERE `id` = $id";
-        return mysqli_query($this->conn, $sql);
+    public function delete($id){
+        $sql = $this->bdd->prepare("DELETE FROM `posts` WHERE `id` = $id");
+        return $sql->execute([$id]);
     }
 }

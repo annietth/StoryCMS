@@ -64,24 +64,3 @@ function session_del($key = '')
         unset($_SESSION[$key]);
     }
 }
-
-function pagination($total = 0, $count = 10)
-{
-    echo '<nav aria-label="Page navigation example">';
-    echo '<ul class="pagination">';
-
-    $start = 0;
-    for ($i = 0; $i < $total; $i += $count) {
-        $start++;
-        echo '<li class="page-item ';
-        echo $_GET['start'] == $i ? 'active' : '';
-        echo '">';
-        echo '<a class="page-link" href="' . url('post?start=' . $i) . '">';
-        echo $start;
-        echo '</a>';
-        echo '</li>';
-    }
-
-    echo '</ul>';
-    echo '</nav>';
-}

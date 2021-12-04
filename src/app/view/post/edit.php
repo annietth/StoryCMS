@@ -1,3 +1,4 @@
+<?php if ($_SESSION["role"] == 1) : ?>
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12 mb-3">
@@ -17,22 +18,25 @@
                     Edit Post
                 </div>
                 <div class="card-body">
-                    <form action="<?php echo url('post/update/' . $post['id'] ) ?>" method="post">
+                    <form action="<?= url('post/update/' . $post[0]['id'] ) ?>" method="post">
                         <div class="form-group">
                             <label>Title</label>
-                            <input type="text" class="form-control" name="title" value="<?php echo $post['title']; ?>">
+                            <input type="text" class="form-control" name="title" value="<?= $post[0]['title']; ?>">
                         </div>
                         <div class="form-group">
                             <label>Content</label>
                             <textarea class="form-control" name="content" rows="3" id="summernote">
-                            <?php echo $post['content']; ?>
+                            <?= $post[0]['content']; ?>
                             </textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
-                        <a href="<?php echo url('post') ?>" class="btn btn-secondary"> Back </a>
+                        <a href="<?= url('post') ?>" class="btn btn-secondary"> Back </a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<?php endif ?>
+
+

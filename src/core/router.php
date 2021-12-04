@@ -13,19 +13,13 @@ class Router
 
     private function parseUri()
     {
-        $uri = $_GET['uri'] ?? '';
+        $url = $_GET['url'] ?? '';
+        $url = explode('/', trim(strtolower($url), '/'));
 
-        /* $uri = strtolower($uri);
-        $uri = trim($uri, '/');
-        $uri = explode('/', $uri); */
-
-        $uri = explode('/', trim(strtolower($uri), '/'));
-
-        // controller
-        if (!empty($uri[0])) {
+        if (!empty($url[0])) {
             
-            $controller = $uri[0] . 'Controller';
-            unset($uri[0]);
+            $controller = $url[0] . 'Controller';
+            unset($url[0]);
             $controller = 'App\Controller\\' . $controller;
 
             if (class_exists($controller)) {
@@ -35,15 +29,14 @@ class Router
             }
         }
 
-
         $class = $this->controller;
         $class = new $class;
 
         // method 
-        if (isset($uri[1])) {
+        if (isset($url[1])) {
 
-            $method = $uri[1];
-            unset($uri[1]);
+            $method = $url[1];
+            unset($url[1]);
 
             if (method_exists($class, $method)) {
                 $this->method = $method;
@@ -53,8 +46,8 @@ class Router
         }
 
         // params 
-        if (isset($uri[2])) {
-            $this->params = array_values($uri);
+        if (isset($url[2])) {
+            $this->params = array_values($url);
         }
 
         call_user_func_array([$class, $this->method], $this->params);
