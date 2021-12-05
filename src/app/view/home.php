@@ -8,9 +8,11 @@
     <a class="listePage1" href="post">
         <span>Liste des articles</span>
     </a>
-    <a class="listePage2" href="users/create">
+    <?php if (isset($_SESSION["role"])): ?>
+    <a class="listePage2" href="post/create">
         <span>Rédiger un article</span>
     </a>
+    <?php endif ?>
     <a class="listePage3" href="users">
         <span>Liste des utilisateurs</span>
     </a>

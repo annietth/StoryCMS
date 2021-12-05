@@ -1,2 +1,2 @@
 <?php 
-define('APP_URL', 'http://localhost/StoryCMS/src/public/');
+define('APP_URL', '/public/');

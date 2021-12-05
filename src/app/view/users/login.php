@@ -1,10 +1,10 @@
 <h1>Connexion</h1>
-<form action="<?= url('users/login') ?>" method="post">
-    <label>Identifiant</label>
-    <input type="text" name="identifiant" placeholder="jacky12"></input>
+<form action="<?= url('users/login') ?>" method="POST">
+    <label>Email</label>
+    <input type="text" name="email" placeholder="jacky12"></input>
 
     <label>Mot de passe</label>
-    <input type="password" name="password" placeholder="coffee4ever"></input>
+    <input type="text" name="password" placeholder="coffee4ever"></input>
 
     <input type="submit" value="Connexion"></input>
 </form>

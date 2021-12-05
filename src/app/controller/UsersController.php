@@ -60,16 +60,14 @@ class UsersController {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!empty($email) && !empty($password)) {
                 $result = $this->user->login($email,$password);
-                //$namelog = $this->user->getNameUser($auteur);
-
                 if ($result != null) {
                     $_SESSION["id"] = $result["id"];
                     $_SESSION["name"] = $result["name"];
                     $_SESSION["email"] = $result["email"];
                     $_SESSION["password"] = $result["password"];
                     $_SESSION["role"] = $result["role"];
-                   // $_SESSION["namelog"] = $namelog["name"];
-                    return view('home');
+                    return header('Location: /public/');
+
                 }
             }else {
                 echo "manque des info";
@@ -80,7 +78,7 @@ class UsersController {
 
     public function logout(){
         $logout = $this->user->logout();
-        return view('home');
+        return header('Location: /public/');
     }
 
     public function getNameUser($nameuser){
