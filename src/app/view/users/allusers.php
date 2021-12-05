@@ -1,22 +1,36 @@
-<div>
-    <h1>users</h1>
-    <a href="users/create">inscription</a>
-    <?php
-    foreach ($users as $user) { ?>
-        <p>
-            <?= $user['id']?>
-        </p>
-        <p>
-            <?= $user['name']?>
-        </p>
-        <p>
-            <?= $user['email']?>
-        </p>
+<table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Identifiant</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        foreach ($users as $user)
+        { ?>
+            <tr>
+                <td>
+                    <?=$user['id'] ?>
+                </td>
+                <td>
+                    <?=$user['name'] ?>
+            </td>
+                <td>
+                    <?=$user['email'] ?>
+            </td>
+                <td>
+                <a href="<?php echo url('users/delete/' . $user['id']); ?>" class="btnStyle1">
+                    Supprimer
+                </a>
+            </td>
+            </tr>
+        <?php
+        }
 
-        <a href="<?php echo url('users/delete/' . $user['id']); ?>" class="btn btn-danger">
-            <i class="fas fa-trash-alt mr-1"></i>Delete
-        </a>
-   <?php }
-    
-    ?>
+        ?>
+        <tbody>
+    </table>
 </div>

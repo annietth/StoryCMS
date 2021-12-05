@@ -1,1 +1,0 @@
-<h1 class="display-4 title">About Page.</h1>

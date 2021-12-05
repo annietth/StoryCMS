@@ -1,0 +1,44 @@
+.listeArticles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    max-width: 900px;
+    width: 100%;
+}
+
+.article {
+    width: 435px;
+    border: 1px solid rgb(245 245 245);
+    border-radius: 10px;
+    padding: 0.5em;
+    -webkit-box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5); 
+    box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
+    padding: 1em
+}
+
+.article h2 {
+    margin: 0 0 0.5em 0;
+}
+
+.article h3 {
+    font-size: 0.8rem;
+    color: rgb(80, 80, 80);
+    margin-top: -0.5em;
+}
+
+.article p {
+    margin: 0 0 1em 0;
+}
+
+.articleContenu {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.listeActionsArticle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}

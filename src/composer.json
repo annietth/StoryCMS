@@ -11,10 +11,12 @@
             "email": "renaudfradin@gmail.com"
         },
         {
-            "name": "Jacky Truong"
+            "name": "Jacky Truong",
+            "email": "jacky.truong@hetic.net"
         },
         {
-            "name": "Annie Tran"
+            "name": "Annie Tran",
+            "email": "annie.tran@hetic.net"
         }
     ],
     "require": {}
